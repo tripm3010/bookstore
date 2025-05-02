@@ -1,0 +1,15 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /profile
+
+spring:
+  neo4j:
+    uri: bolt://localhost:7687
+    authentication:
+      username: neo4j
+      password: 12345678
+jwt:
+  signerKey: "s+KlA43TK3WxkiC1/FNogayrp2ARR3xMary3dTM3md8t7ihsPKNAkA350Og9YWZD"
+  valid-duration: 20
+  refreshable-duration: 120
