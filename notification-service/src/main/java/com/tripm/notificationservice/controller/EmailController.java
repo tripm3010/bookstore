@@ -7,6 +7,9 @@ import com.tripm.notificationservice.service.EmailService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class EmailController {
+    private static final Logger log = LoggerFactory.getLogger(EmailController.class);
     EmailService emailService;
 
     @PostMapping("/email/send")
@@ -23,4 +27,5 @@ public class EmailController {
                 .result(emailService.sendEmail(request))
                 .build();
     }
+
 }

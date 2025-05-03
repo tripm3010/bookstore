@@ -1,5 +1,6 @@
 package com.tripm.identityservice.service;
 
+import com.tripm.event.dto.NotificationEvent;
 import com.tripm.identityservice.constant.PredefinedRole;
 import com.tripm.identityservice.dto.request.UserCreationRequest;
 import com.tripm.identityservice.dto.request.UserUpdateRequest;
@@ -17,6 +18,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,6 +40,7 @@ public class UserService {
     RoleRepository roleRepository;
     ProfileClient profileClient;
     ProfileMapper profileMapper;
+    KafkaTemplate<String, Object> kafkaTemplate;
 
     public UserResponse createUser(UserCreationRequest request) {
 
@@ -52,11 +55,22 @@ public class UserService {
         roleRepository.findById(PredefinedRole.USER_ROLE).ifPresent(roles::add);
 
         user.setRoles(roles);
+        user.setEmailVerified(false);
 
         user = userRepository.save(user);
         var profileRequest = profileMapper.toProfileCreationRequest(request);
         profileRequest.setUserId(user.getId());
+
         profileClient.createProfile(profileRequest);
+
+        NotificationEvent notificationEvent  = NotificationEvent.builder()
+                .channel("EMAIL")
+                .recipient(request.getEmail())
+                .subject("Welcome to my website")
+                .body("Hello, " + request.getUsername() + "!")
+                .build();
+        //Publish mess to Kafka
+        kafkaTemplate.send("notification-delivery",notificationEvent);
 
         return userMapper.toUserResponse(user);
     }

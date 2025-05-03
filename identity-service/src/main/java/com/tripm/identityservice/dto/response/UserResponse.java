@@ -15,9 +15,8 @@ import java.util.Set;
 public class UserResponse {
     String id;
     String username;
-    String firstname;
-    String lastname;
-    LocalDate dob;
+    String email;
+    boolean emailVerified;
 
     Set<RoleResponse> roles;
 }
