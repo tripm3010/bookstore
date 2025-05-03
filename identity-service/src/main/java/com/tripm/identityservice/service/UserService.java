@@ -86,7 +86,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public UserResponse getMyInfo(String minhtri30101){
+    public UserResponse getMyInfo(){
         var name = SecurityContextHolder.getContext().getAuthentication().getName();
 
         User byUserName = userRepository.findByUsername(name)

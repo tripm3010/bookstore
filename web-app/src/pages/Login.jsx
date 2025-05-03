@@ -93,7 +93,7 @@ import {
           >
             <CardContent>
               <Typography variant="h5" component="h1" gutterBottom>
-                Welcome to Devtetia
+                Welcome to...
               </Typography>
               <Box
                 component="form"

@@ -67,10 +67,10 @@ public class UserController {
         return response;
     }
 
-    @GetMapping("/myInfo")
+    @GetMapping("/my-info")
     public ApiResponse<UserResponse> getMyInfo() {
         return ApiResponse.<UserResponse>builder()
-                .result(userService.getMyInfo("minhtri30101"))
+                .result(userService.getMyInfo())
                 .build();
     }
 }

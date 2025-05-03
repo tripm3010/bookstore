@@ -1,5 +1,5 @@
 export const CONFIG = {
-    API_GATEWAY: "http://localhost:8888/api/v1",
+    API_GATEWAY: "http://localhost:8888/api",
   };
   
   export const API = {
