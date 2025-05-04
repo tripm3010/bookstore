@@ -1,8 +1,8 @@
 package com.tripm.postservice.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tripm.profileservice.dto.ApiResponse;
-import com.tripm.profileservice.exception.ErrorCode;
+import com.tripm.postservice.dto.ApiResponse;
+import com.tripm.postservice.exception.ErrorCode;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

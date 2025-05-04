@@ -1,6 +1,5 @@
 package com.tripm.postservice.exception;
 
-import com.tripm.identityservice.exception.ErrorCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -1,8 +1,6 @@
 package com.tripm.postservice.exception;
 
-import com.tripm.identityservice.dto.request.ApiResponse;
-import com.tripm.identityservice.exception.AppException;
-import com.tripm.identityservice.exception.ErrorCode;
+import com.tripm.postservice.dto.ApiResponse;
 import jakarta.validation.ConstraintViolation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +47,7 @@ public class GlobalExceptionHandler {
         try{
             errorCode = ErrorCode.valueOf(enumError);
             var constrainViolation = e.getBindingResult()
-                    .getAllErrors().getFirst().unwrap(ConstraintViolation.class);
+                    .getAllErrors().get(0).unwrap(ConstraintViolation.class);
             attributes =  constrainViolation.getConstraintDescriptor().getAttributes();
            log.info(attributes.toString());
 
