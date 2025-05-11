@@ -22,7 +22,8 @@ public enum ErrorCode {
     UNAUTHENTICATED(1007, "Unauthenticated", HttpStatus.UNAUTHORIZED),
     UNAUTHENTICATEDD(1007, "link error", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(1008, "Unauthorized", HttpStatus.FORBIDDEN),
-    INVALID_DOB(1009, "Your age must be at least {min} years old", HttpStatus.BAD_REQUEST),;
+    INVALID_DOB(1009, "Your age must be at least {min} years old", HttpStatus.BAD_REQUEST),
+    FILE_NOT_FOUND(1010, "File not found", HttpStatus.NOT_FOUND);
 
     int code;
     String message;

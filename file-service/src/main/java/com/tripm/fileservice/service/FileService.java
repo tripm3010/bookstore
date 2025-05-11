@@ -1,12 +1,17 @@
 package com.tripm.fileservice.service;
 
+import com.tripm.fileservice.dto.response.FileData;
 import com.tripm.fileservice.dto.response.FileResponse;
+import com.tripm.fileservice.exception.AppException;
+import com.tripm.fileservice.exception.ErrorCode;
 import com.tripm.fileservice.mapper.FileMgmtMapper;
 import com.tripm.fileservice.repository.FileMgmtRepository;
 import com.tripm.fileservice.repository.FileRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -40,6 +45,15 @@ public class FileService {
                 .originalFileName(file.getOriginalFilename())
                 .url(fileInfo.getUrl())
                 .build();
+    }
+
+    public FileData downloadFile(String fileName) throws IOException {
+        var fileMgmt = fileMgmtRepository.findById(fileName).orElseThrow(
+                () -> new AppException(ErrorCode.FILE_NOT_FOUND)
+        );
+
+        var resource = fileRepository.read(fileMgmt);
+        return new FileData(fileMgmt.getContentType(), resource);
     }
 
 }

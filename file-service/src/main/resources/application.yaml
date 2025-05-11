@@ -21,4 +21,4 @@ jwt:
 app:
   file:
     storage-dir: /Users/phamtri/Documents/upload
-    download-prefix: http://localhost:8888/api/file/media/
+    download-prefix: http://localhost:8888/api/file/media/download/
