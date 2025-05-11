@@ -1,0 +1,24 @@
+server:
+  port: 8084
+  servlet:
+    context-path: /file
+spring:
+  application:
+    name: file-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/file-service?authSource=admin
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+jwt:
+  signerKey: "s+KlA43TK3WxkiC1/FNogayrp2ARR3xMary3dTM3md8t7ihsPKNAkA350Og9YWZD"
+  valid-duration: 20
+  refreshable-duration: 120
+
+app:
+  file:
+    storage-dir: /Users/phamtri/Documents/upload
+    download-prefix: http://localhost:8888/api/file/media/

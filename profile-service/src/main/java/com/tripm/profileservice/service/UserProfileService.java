@@ -2,6 +2,9 @@ package com.tripm.profileservice.service;
 
 import com.tripm.profileservice.dto.request.UserProfileCreationRequest;
 import com.tripm.profileservice.dto.response.UserProfileResponse;
+import com.tripm.profileservice.entity.UserProfile;
+import com.tripm.profileservice.exception.AppException;
+import com.tripm.profileservice.exception.ErrorCode;
 import com.tripm.profileservice.mapper.UserProfileMapper;
 import com.tripm.profileservice.repository.UserProfileRepository;
 import lombok.AccessLevel;
@@ -27,7 +30,7 @@ public class UserProfileService {
 
     public UserProfileResponse getUserProfile(String id){
         var userProfile = userProfileRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("User profile not found")
+                () -> new AppException(ErrorCode.USER_NOT_FOUND)
         );
         return userProfileMapper.toUserProfileResponse(userProfile);
     }
@@ -36,6 +39,13 @@ public class UserProfileService {
     public List<UserProfileResponse> getAllProfile(){
         var profiles =  userProfileRepository.findAll();
         return profiles.stream().map(userProfileMapper::toUserProfileResponse).toList();
+    }
+
+    public UserProfileResponse getByUserId(String userId){
+        UserProfile userProfile = userProfileRepository.findByUserId(userId).orElseThrow(
+                () -> new AppException(ErrorCode.USER_NOT_FOUND)
+        );
+        return userProfileMapper.toUserProfileResponse(userProfile);
     }
 
 }

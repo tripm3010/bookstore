@@ -9,6 +9,7 @@ spring:
     authentication:
       username: neo4j
       password: 12345678
+    auto-index: assert
 jwt:
   signerKey: "s+KlA43TK3WxkiC1/FNogayrp2ARR3xMary3dTM3md8t7ihsPKNAkA350Og9YWZD"
   valid-duration: 20

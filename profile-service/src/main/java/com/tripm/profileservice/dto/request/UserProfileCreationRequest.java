@@ -13,6 +13,8 @@ import java.time.LocalDate;
 public class UserProfileCreationRequest {
 
     String userId;
+    String email;
+    String username;
     String firstname;
     String lastname;
     LocalDate dob;

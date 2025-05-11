@@ -1,5 +1,6 @@
 package com.tripm.profileservice.controller;
 
+import com.tripm.profileservice.dto.ApiResponse;
 import com.tripm.profileservice.dto.request.UserProfileCreationRequest;
 import com.tripm.profileservice.dto.response.UserProfileResponse;
 import com.tripm.profileservice.service.UserProfileService;
@@ -16,7 +17,16 @@ public class InternalUserProfileController {
     UserProfileService userProfileService;
 
     @PostMapping("/internal/users")
-    public UserProfileResponse createUserProfile(@RequestBody UserProfileCreationRequest userProfileCreationRequest) {
-        return userProfileService.createUserProfile(userProfileCreationRequest);
+    public ApiResponse<UserProfileResponse> createUserProfile(@RequestBody UserProfileCreationRequest request) {
+        return ApiResponse.<UserProfileResponse>builder()
+                .result(userProfileService.createUserProfile(request))
+                .build();
+    }
+
+    @GetMapping("/internal/users/{userId}")
+    public ApiResponse<UserProfileResponse> getUserProfile(@PathVariable String userId) {
+        return ApiResponse.<UserProfileResponse>builder()
+                .result(userProfileService.getByUserId(userId))
+                .build();
     }
 }
