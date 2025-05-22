@@ -24,7 +24,7 @@ All services are containerized with Docker and orchestrated using `docker-compos
 
 - **Backend**: Java 17, Spring Boot, Spring Security, Spring Data JPA  
 - **Frontend**: ReactJS, Axios, Bootstrap  
-- **Database**: PostgreSQL  
+- **Database**: PostgreSQL, MySQL, MongoDB  
 - **Message Broker**: Apache Kafka  
 - **Containerization**: Docker, Docker Compose  
 - **Version Control**: Git, GitHub  
