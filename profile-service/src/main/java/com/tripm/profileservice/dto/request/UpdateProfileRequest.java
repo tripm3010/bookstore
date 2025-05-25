@@ -1,4 +1,4 @@
-package com.tripm.profileservice.dto.response;
+package com.tripm.profileservice.dto.request;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -6,18 +6,14 @@ import lombok.experimental.FieldDefaults;
 import java.time.LocalDate;
 
 @Data
-@Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserProfileResponse {
-
-    String id;
+public class UpdateProfileRequest {
     String email;
-    String username;
-    String avatar;
-    String firstname;
-    String lastname;
+    String firstName;
+    String lastName;
     LocalDate dob;
     String city;
 }

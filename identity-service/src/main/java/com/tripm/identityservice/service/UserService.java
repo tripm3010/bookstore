@@ -32,7 +32,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class    UserService {
 
     UserRepository userRepository;
     UserMapper userMapper;
