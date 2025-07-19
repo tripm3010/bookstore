@@ -28,7 +28,7 @@ public class UserProfileService {
     UserProfileMapper userProfileMapper;
     FileClient fileClient;
 
-    public UserProfileResponse createProfile(UserProfileCreationRequest request) {
+    public UserProfileResponse createUserProfile(UserProfileCreationRequest request) {
         UserProfile userProfile = userProfileMapper.toUserProfile(request);
         userProfile = userProfileRepository.save(userProfile);
 

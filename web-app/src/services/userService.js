@@ -1,3 +1,4 @@
+
 import httpClient from "../configurations/httpClient";
 import { API } from "../configurations/configuration";
 import { getToken } from "./localStorageService";
@@ -26,4 +27,17 @@ export const uploadAvatar = async (formData) => {
             "Content-Type": "multipart/form-data",
         },
     });
+};
+
+export const search = async (keyword) => {
+    return await httpClient.post(
+        API.SEARCH_USER,
+        { keyword: keyword },
+        {
+            headers: {
+                Authorization: `Bearer ${getToken()}`,
+                "Content-Type": "application/json",
+            },
+        }
+    );
 };
